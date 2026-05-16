@@ -43,13 +43,16 @@ function Services() {
             <Reveal key={s.title} delay={(i % 2) * 0.05}>
               <Link
                 to="/contact"
-                className="group flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-border py-10 md:py-12 transition-colors hover:bg-card"
+                className="group relative flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-border py-10 md:py-12 overflow-hidden transition-colors hover:bg-card"
               >
-                <div className="flex items-baseline gap-8 md:gap-12">
-                  <span className="text-xs tracking-[0.2em] text-accent w-10">0{i + 1 < 10 ? i + 1 : i + 1}</span>
+                <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                  <img src={s.image} alt="" className="h-full w-full object-cover" />
+                </div>
+                <div className="relative z-10 flex items-baseline gap-8 md:gap-12">
+                  <span className="text-xs tracking-[0.2em] text-accent w-10">0{i + 1}</span>
                   <h2 className="font-display text-3xl md:text-5xl">{s.title}</h2>
                 </div>
-                <div className="flex items-center justify-between md:gap-12 md:max-w-md md:flex-1">
+                <div className="relative z-10 flex items-center justify-between md:gap-12 md:max-w-md md:flex-1">
                   <p className="text-sm text-muted-foreground md:text-right max-w-md">{s.desc}</p>
                   <ArrowUpRight className="hidden md:block h-5 w-5 text-foreground/60 transition-all group-hover:text-accent group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>

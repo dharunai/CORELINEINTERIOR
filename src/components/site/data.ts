@@ -5,6 +5,17 @@ import office from "@/assets/project-office.jpg";
 import wardrobe from "@/assets/project-wardrobe.jpg";
 import dining from "@/assets/project-dining.jpg";
 
+// Service Backgrounds
+import sHome from "@/assets/service-home.png";
+import sApartment from "@/assets/service-apartment.png";
+import sVilla from "@/assets/service-villa.png";
+import sKitchen from "@/assets/service-kitchen.png";
+import sOffice from "@/assets/service-office.png";
+import sCommercial from "@/assets/service-commercial.png";
+import sRenovation from "@/assets/service-renovation.png";
+import sWardrobe from "@/assets/service-wardrobe.png";
+import sCeiling from "@/assets/service-ceiling.png";
+
 export const projects = [
   { slug: "marble-light-residence", title: "Marble & Light Residence", type: "Luxury Villa", location: "ECR, Chennai", image: villa, year: "2025" },
   { slug: "linen-and-oak-apartment", title: "Linen & Oak Apartment", type: "Apartment Interiors", location: "Anna Nagar, Chennai", image: bedroom, year: "2025" },
@@ -15,16 +26,16 @@ export const projects = [
 ];
 
 export const services = [
-  { title: "Home Interiors", desc: "End-to-end interior design for thoughtful homes." },
-  { title: "Apartment Interiors", desc: "Considered layouts that elevate urban living." },
-  { title: "Luxury Villas", desc: "Architectural interiors for landmark residences." },
-  { title: "Modular Kitchens", desc: "Bespoke kitchens engineered for everyday rituals." },
-  { title: "Office Interiors", desc: "Workspaces that quietly express your brand." },
-  { title: "Commercial Spaces", desc: "Hospitality and retail with editorial polish." },
-  { title: "Renovation Works", desc: "Restoring spaces with discipline and craft." },
-  { title: "TV Units & Wardrobes", desc: "Built-ins detailed to the millimeter." },
-  { title: "False Ceilings", desc: "Light, line and shadow, choreographed." },
-  { title: "Custom Furniture", desc: "Pieces made in our workshop, just for you." },
+  { title: "Home Interiors", desc: "End-to-end interior design for thoughtful homes.", image: sHome },
+  { title: "Apartment Interiors", desc: "Considered layouts that elevate urban living.", image: sApartment },
+  { title: "Luxury Villas", desc: "Architectural interiors for landmark residences.", image: sVilla },
+  { title: "Modular Kitchens", desc: "Bespoke kitchens engineered for everyday rituals.", image: sKitchen },
+  { title: "Office Interiors", desc: "Workspaces that quietly express your brand.", image: sOffice },
+  { title: "Commercial Spaces", desc: "Hospitality and retail with editorial polish.", image: sCommercial },
+  { title: "Renovation Works", desc: "Restoring spaces with discipline and craft.", image: sRenovation },
+  { title: "TV Units & Wardrobes", desc: "Built-ins detailed to the millimeter.", image: sWardrobe },
+  { title: "False Ceilings", desc: "Light, line and shadow, choreographed.", image: sCeiling },
+  { title: "Custom Furniture", desc: "Pieces made in our workshop, just for you.", image: sHome },
 ];
 
 export const process = [

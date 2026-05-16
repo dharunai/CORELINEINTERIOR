@@ -6,7 +6,13 @@ export function Footer() {
     <footer className="border-t border-border/60 bg-foreground text-background">
       <div className="container-luxe py-20 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="font-display text-3xl tracking-tight">CoreLine Interiors</div>
+          <div className="flex items-center gap-4">
+            <img src="/src/assets/logo.png" alt="CoreLine Interiors" className="h-16 w-auto" />
+            <div className="flex flex-col -space-y-1">
+              <span className="font-display text-2xl tracking-tight text-background">CoreLine</span>
+              <span className="eyebrow text-xs tracking-[0.2em] text-background/70">Interiors</span>
+            </div>
+          </div>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-background/70">
             A luxury interior design studio crafting refined homes, villas and commercial
             spaces with a quiet, enduring sense of beauty.
@@ -26,7 +32,7 @@ export function Footer() {
             </a>
             <span className="inline-flex items-center gap-3">
               <MapPin className="h-4 w-4 text-accent" />
-              <span>Chennai, India</span>
+              <span>Boat Club Road, Chennai</span>
             </span>
           </div>
         </div>

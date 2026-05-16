@@ -33,9 +33,12 @@ export function Navbar() {
       }`}
     >
       <div className="container-luxe flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="font-display text-2xl tracking-tight">CoreLine</span>
-          <span className="eyebrow hidden sm:block">Interiors</span>
+        <Link to="/" className="flex items-center gap-4" onClick={() => setOpen(false)}>
+          <img src="/src/assets/logo.png" alt="CoreLine Interiors" className="h-14 w-auto" />
+          <div className="flex flex-col -space-y-0.5">
+            <span className="font-display text-2xl tracking-tight text-foreground">CoreLine</span>
+            <span className="eyebrow text-[11px] tracking-[0.3em] text-foreground/60">Interiors</span>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-10 md:flex">

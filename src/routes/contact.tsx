@@ -49,8 +49,8 @@ function Contact() {
             </div>
 
             <div className="space-y-4 text-sm">
-              <a href="tel:+919000000000" className="flex items-center gap-4 link-underline">
-                <Phone className="h-4 w-4 text-accent" /> +91 90000 00000
+              <a href="tel:+916383620372" className="flex items-center gap-4 link-underline">
+                <Phone className="h-4 w-4 text-accent" /> +91 63836 20372
               </a>
               <a href="mailto:studio@coreline.in" className="flex items-center gap-4 link-underline">
                 <Mail className="h-4 w-4 text-accent" /> studio@coreline.in
@@ -58,8 +58,8 @@ function Contact() {
               <div className="flex items-center gap-4">
                 <MapPin className="h-4 w-4 text-accent" /> Boat Club Road, Chennai
               </div>
-              <a href="https://wa.me/919000000000" target="_blank" rel="noreferrer" className="flex items-center gap-4 link-underline">
-                <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp
+              <a href="https://wa.me/918870981415" target="_blank" rel="noreferrer" className="flex items-center gap-4 link-underline">
+                <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp +91 88709 81415
               </a>
             </div>
 

@@ -148,14 +148,23 @@ function Home() {
             </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y divide-border border-y border-border lg:divide-y-0 lg:divide-x">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-border border-y">
             {services.slice(0, 9).map((s, i) => (
-              <Reveal key={s.title} delay={(i % 3) * 0.08} className="group">
-                <div className="p-8 md:p-10 h-full flex flex-col justify-between gap-12 transition-colors hover:bg-card">
-                  <div className="text-xs tracking-[0.2em] uppercase text-accent">0{i + 1}</div>
+              <Reveal key={s.title} delay={(i % 3) * 0.08} className="group relative overflow-hidden border-border sm:border-r lg:border-r last:border-r-0">
+                <div className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110">
+                  <img
+                    src={s.image}
+                    alt={s.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+                <div className="absolute inset-0 z-10 bg-background/90 group-hover:bg-background/40 transition-colors duration-500" />
+                
+                <div className="relative z-20 p-8 md:p-12 h-full flex flex-col justify-between min-h-[320px]">
+                  <div className="text-xs tracking-[0.3em] uppercase text-accent font-medium">0{i + 1}</div>
                   <div>
-                    <h3 className="font-display text-2xl md:text-3xl">{s.title}</h3>
-                    <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                    <h3 className="font-display text-3xl md:text-4xl transition-colors group-hover:text-foreground">{s.title}</h3>
+                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors">{s.desc}</p>
                   </div>
                 </div>
               </Reveal>
@@ -326,7 +335,7 @@ function Home() {
               <Link to="/contact" className="inline-flex items-center justify-center gap-3 bg-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase text-background hover:bg-accent">
                 Book Consultation <ArrowUpRight className="h-4 w-4" />
               </Link>
-              <a href="https://wa.me/919000000000" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 border border-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase hover:bg-foreground hover:text-background">
+              <a href="https://wa.me/918870981415" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 border border-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase hover:bg-foreground hover:text-background">
                 Chat on WhatsApp
               </a>
             </div>
