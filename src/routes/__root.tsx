@@ -111,12 +111,14 @@ function RootShell({ children }: { children: React.ReactNode }) {
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
+import { Cursor } from "@/components/site/Cursor";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <Cursor />
       <Navbar />
       <main className="min-h-screen">
         <Outlet />

@@ -22,9 +22,9 @@ export function Footer() {
               <Phone className="h-4 w-4 text-accent" />
               <span>+91 63836 20372</span>
             </a>
-            <a href="https://wa.me/918870981415" target="_blank" rel="noreferrer" className="link-underline inline-flex items-center gap-3">
+            <a href="https://wa.me/916383620372" target="_blank" rel="noreferrer" className="link-underline inline-flex items-center gap-3">
               <MessageCircle className="h-4 w-4 text-accent" />
-              <span>WhatsApp +91 88709 81415</span>
+              <span>WhatsApp +91 63836 20372</span>
             </a>
             <a href="mailto:studio@coreline.in" className="link-underline inline-flex items-center gap-3">
               <Mail className="h-4 w-4 text-accent" />
@@ -64,28 +64,50 @@ export function Footer() {
       </div>
 
       <div className="border-t border-background/10">
-        <div className="container-luxe py-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between text-xs text-background/50">
-          <span>© {new Date().getFullYear()} CoreLine Interiors. All rights reserved.</span>
-          <span className="inline-flex items-center gap-4 tracking-[0.18em] uppercase">
-            <a
-              href="https://thegenworks.com"
-              target="_blank"
-              rel="noreferrer"
-              className="link-underline"
-            >
-              Developed by TheGenWorks
-            </a>
-            <a
-              href="https://www.linkedin.com/company/the-genworks"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="TheGenWorks on LinkedIn"
-              className="inline-flex items-center gap-1 link-underline"
-            >
-              <Linkedin className="h-3.5 w-3.5 text-accent" />
-              <span>LinkedIn</span>
-            </a>
-          </span>
+        <div className="container-luxe py-10 flex flex-col md:flex-row md:items-start md:justify-between gap-8 text-xs text-background/50">
+          <div className="flex flex-col gap-2">
+            <span className="tracking-wide">© {new Date().getFullYear()} CoreLine Interiors. All rights reserved.</span>
+            <span className="max-w-sm mt-1 leading-relaxed opacity-80">
+              Crafting digital experiences with the same restraint, craft, and obsession to detail as physical spaces.
+            </span>
+          </div>
+          
+          <div className="flex flex-col gap-4 md:items-end">
+            <span className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 tracking-[0.18em] uppercase">
+              <a
+                href="https://thegenworks.com"
+                target="_blank"
+                rel="noreferrer"
+                className="link-underline"
+              >
+                Developed by TheGenWorks
+              </a>
+              <a
+                href="https://www.linkedin.com/company/the-genworks"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TheGenWorks on LinkedIn"
+                className="inline-flex items-center gap-1 link-underline hover:text-background transition-colors"
+              >
+                <Linkedin className="h-3.5 w-3.5 text-accent" />
+                <span>LinkedIn</span>
+              </a>
+            </span>
+
+            <span className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 tracking-[0.18em] uppercase text-background/40">
+              <span>Led by Dharun Shanmugavel</span>
+              <a
+                href="https://www.linkedin.com/in/dharun-shanmugavel-bb7304315/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Dharun Shanmugavel on LinkedIn"
+                className="inline-flex items-center gap-1 link-underline hover:text-background transition-colors"
+              >
+                <Linkedin className="h-3.5 w-3.5 text-accent" />
+                <span>LinkedIn</span>
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>

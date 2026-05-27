@@ -46,7 +46,7 @@ function Home() {
           <img
             src={heroImg}
             alt="Luxury interior living room with floor-to-ceiling windows at golden hour"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover animate-live-zoom"
             width={1920}
             height={1280}
             fetchPriority="high"
@@ -64,7 +64,7 @@ function Home() {
             transition={{ duration: 0.9, delay: 0.2 }}
             className="eyebrow text-cream/80"
           >
-            CoreLine Interiors — Est. 2011
+            CoreLine Interiors — Est. 2024
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -158,7 +158,7 @@ function Home() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="absolute inset-0 z-10 bg-background/90 group-hover:bg-background/40 transition-colors duration-500" />
+                <div className="absolute inset-0 z-10 bg-background/80 group-hover:bg-background/10 transition-colors duration-500" />
                 
                 <div className="relative z-20 p-8 md:p-12 h-full flex flex-col justify-between min-h-[320px]">
                   <div className="text-xs tracking-[0.3em] uppercase text-accent font-medium">0{i + 1}</div>
@@ -247,13 +247,13 @@ function Home() {
           <div className="md:col-span-6">
             <Reveal>
               <span className="eyebrow">The Studio</span>
-              <h2 className="mt-5 font-display text-4xl md:text-5xl leading-[1.08]">
+              <h2 className="mt-5 font-display text-3xl md:text-5xl leading-[1.08]">
                 A practice built on <em className="text-accent not-italic">restraint, craft</em> and an obsession with detail.
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
               <p className="mt-8 text-base leading-relaxed text-muted-foreground">
-                For over a decade, CoreLine has designed homes, villas and workplaces across
+                Over the past 2 years, CoreLine has designed homes, villas and workplaces across
                 South India. We work with a small, devoted team of architects, designers and
                 craftspeople — and we work slowly, on purpose.
               </p>
@@ -335,7 +335,7 @@ function Home() {
               <Link to="/contact" className="inline-flex items-center justify-center gap-3 bg-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase text-background hover:bg-accent">
                 Book Consultation <ArrowUpRight className="h-4 w-4" />
               </Link>
-              <a href="https://wa.me/918870981415" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 border border-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase hover:bg-foreground hover:text-background">
+              <a href="https://wa.me/916383620372" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-3 border border-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase hover:bg-foreground hover:text-background">
                 Chat on WhatsApp
               </a>
             </div>

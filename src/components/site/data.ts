@@ -48,9 +48,9 @@ export const process = [
 ];
 
 export const stats = [
-  { n: 240, suffix: "+", label: "Projects Completed" },
-  { n: 14, suffix: "", label: "Years of Practice" },
-  { n: 180, suffix: "+", label: "Happy Clients" },
+  { n: 30, suffix: "+", label: "Projects Completed" },
+  { n: 2, suffix: "", label: "Years of Practice" },
+  { n: 25, suffix: "+", label: "Happy Clients" },
   { n: 22, suffix: "", label: "Design Experts" },
 ];
 

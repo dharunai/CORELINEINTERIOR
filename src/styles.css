@@ -169,6 +169,14 @@
     transform: scale(1.06);
   }
 
+  @keyframes live-zoom {
+    0% { transform: scale(1.0); }
+    100% { transform: scale(1.15); }
+  }
+  .animate-live-zoom {
+    animation: live-zoom 25s infinite alternate ease-in-out;
+  }
+
   .glass {
     background: color-mix(in oklab, var(--cream) 70%, transparent);
     backdrop-filter: blur(16px) saturate(140%);

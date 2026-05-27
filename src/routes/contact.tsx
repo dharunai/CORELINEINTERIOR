@@ -58,8 +58,8 @@ function Contact() {
               <div className="flex items-center gap-4">
                 <MapPin className="h-4 w-4 text-accent" /> Boat Club Road, Chennai
               </div>
-              <a href="https://wa.me/918870981415" target="_blank" rel="noreferrer" className="flex items-center gap-4 link-underline">
-                <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp +91 88709 81415
+              <a href="https://wa.me/916383620372" target="_blank" rel="noreferrer" className="flex items-center gap-4 link-underline">
+                <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp +91 63836 20372
               </a>
             </div>
 

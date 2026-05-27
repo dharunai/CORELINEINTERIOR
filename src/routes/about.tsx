@@ -42,7 +42,7 @@ function About() {
           <div className="md:col-span-6 space-y-10 md:pt-12">
             <Reveal>
               <h2 className="font-display text-3xl md:text-4xl leading-snug">
-                Founded in 2011, CoreLine designs homes, villas and workplaces that quietly elevate the way people live.
+                Founded in 2024, CoreLine designs homes, villas and workplaces that quietly elevate the way people live.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>

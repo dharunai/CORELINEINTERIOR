@@ -45,7 +45,7 @@ function Services() {
                 to="/contact"
                 className="group relative flex flex-col md:flex-row md:items-baseline justify-between gap-4 border-b border-border py-10 md:py-12 overflow-hidden transition-colors hover:bg-card"
               >
-                <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
+                <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none">
                   <img src={s.image} alt="" className="h-full w-full object-cover" />
                 </div>
                 <div className="relative z-10 flex items-baseline gap-8 md:gap-12">
