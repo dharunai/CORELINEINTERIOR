@@ -6,9 +6,9 @@ import { ArrowUpRight } from "lucide-react";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — CoreLine Interiors" },
-      { name: "description", content: "Home interiors, modular kitchens, villa interiors, office and commercial design, custom furniture and renovation by CoreLine Interiors, Chennai." },
-      { property: "og:title", content: "Services — CoreLine Interiors" },
+      { title: "Services — CoreLine Interior" },
+      { name: "description", content: "Home interiors, modular kitchens, villa interiors, office and commercial design, custom furniture and renovation by CoreLine Interior, Pollachi." },
+      { property: "og:title", content: "Services — CoreLine Interior" },
       { property: "og:url", content: "/services" },
     ],
     links: [{ rel: "canonical", href: "/services" }],

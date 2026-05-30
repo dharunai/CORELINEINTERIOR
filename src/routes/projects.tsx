@@ -1,161 +1,22 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useLoaderData } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence, useInView } from "motion/react";
 import { ArrowUpRight, ArrowRight, X } from "lucide-react";
 import { useState, useMemo, useRef, useEffect } from "react";
+import { createServerFn } from "@tanstack/react-start";
+import * as fsPromises from "node:fs/promises";
+import * as nodePath from "node:path";
 
-// ─── Project data using uploaded images ───────────────────────────────────────
-const newProjects = [
-  {
-    slug: "golden-hour-living",
-    title: "Golden Hour Living Room",
-    type: "Home Interiors",
-    location: "Boat Club, Chennai",
-    year: "2025",
-    image: "/uploads/81121318-a144-415a-8916-cdbebaec19f6.jpeg",
-    desc: "A warm, layered living room anchored by a marble TV wall and fluted wood panel with cove-lit false ceiling.",
-    tags: ["Living Room", "Cove Ceiling", "Marble"],
-  },
-  {
-    slug: "burgundy-kitchen",
-    title: "Burgundy Kitchen",
-    type: "Modular Kitchens",
-    location: "Anna Nagar, Chennai",
-    year: "2025",
-    image: "/uploads/ae0859de-5581-4801-9dd6-b760b21eb8ff.jpeg",
-    desc: "Deep plum lacquer lowers set against crisp shaker uppers with glass display cabinets and under-cabinet lighting.",
-    tags: ["Modular Kitchen", "Lacquer", "Glass Cabinets"],
-  },
-  {
-    slug: "nordic-living-dining",
-    title: "Nordic Living & Dining",
-    type: "Apartment Interiors",
-    location: "Nungambakkam, Chennai",
-    year: "2025",
-    image: "/uploads/c4ad8b4b-704c-49a8-b646-8cb2385e5079.jpeg",
-    desc: "A clean-lined open-plan combining a display cabinet, fluted TV unit and Scandi dining nook in warm white tones.",
-    tags: ["Open Plan", "TV Unit", "Dining"],
-  },
-  {
-    slug: "founders-studio",
-    title: "Founder's Studio",
-    type: "Office Interiors",
-    location: "Kilpauk, Chennai",
-    year: "2024",
-    image: "/uploads/0d1348c3-d7a4-4b55-b7a5-b208a21f3bac.jpeg",
-    desc: "A moody private office with toile mural wall, leather seating and bespoke ceiling detail.",
-    tags: ["Office", "Mural Wall", "Dark Palette"],
-  },
-  {
-    slug: "cream-island-kitchen",
-    title: "Cream Island Kitchen",
-    type: "Modular Kitchens",
-    location: "ECR, Chennai",
-    year: "2025",
-    image: "/uploads/e3e544c7-72fa-4c8e-934f-59ded2f19a1e.jpeg",
-    desc: "Floor-to-ceiling cream gloss cabinetry with a statement marble backsplash and bar-stool island.",
-    tags: ["Island Kitchen", "Marble", "Gloss"],
-  },
-  {
-    slug: "parisian-lounge",
-    title: "Parisian Lounge",
-    type: "Home Interiors",
-    location: "Adyar, Chennai",
-    year: "2024",
-    image: "/uploads/f9aaf95a-a6e6-42fd-9113-610cf13a4946.jpeg",
-    desc: "Panelled walls in warm bone with a globe floor lamp and graphic circular rug — a Parisian pied-à-terre sensibility.",
-    tags: ["Panel Walls", "Living Room", "Eclectic"],
-  },
-  {
-    slug: "forest-mural-sitting",
-    title: "Forest Mural Sitting Room",
-    type: "Home Interiors",
-    location: "Besant Nagar, Chennai",
-    year: "2024",
-    image: "/uploads/e73d1b2c-0719-4488-8863-95050bd5135b.jpeg",
-    desc: "A watercolour forest mural anchors a free-spirited seating arrangement in earthy terracotta and ivory.",
-    tags: ["Mural", "Living Room", "Earthy"],
-  },
-  {
-    slug: "walnut-bedroom",
-    title: "Walnut Bedroom",
-    type: "Bedroom Interiors",
-    location: "Mylapore, Chennai",
-    year: "2024",
-    image: "/uploads/08be7433-090e-4d09-8357-6751d48eb849.jpeg",
-    desc: "Rich walnut veneer bed frame and wardrobes glow under warm cove lighting and venetian-blind dusk.",
-    tags: ["Bedroom", "Walnut", "Cove Lighting"],
-  },
-  {
-    slug: "slatted-tv-kitchen",
-    title: "Slatted Partition Living",
-    type: "Apartment Interiors",
-    location: "Tambaram, Chennai",
-    year: "2024",
-    image: "/uploads/308e9415-f98b-412b-925d-b8ad73ca9e33.jpeg",
-    desc: "A full-height slatted timber partition delineates the living and kitchen zones with golden warmth.",
-    tags: ["Partition", "Timber Slats", "Open Plan"],
-  },
-  {
-    slug: "monochrome-tv-wall",
-    title: "Monochrome TV Wall",
-    type: "Home Interiors",
-    location: "Velachery, Chennai",
-    year: "2023",
-    image: "/uploads/59261038-de62-4f61-be1d-ed80dceed2f9.jpeg",
-    desc: "Floating shelves with display lighting flank a wall-mounted TV in a balanced marble-finish interior.",
-    tags: ["TV Unit", "Floating Shelves", "Minimal"],
-  },
-  {
-    slug: "classic-contemporary-home",
-    title: "Classic Contemporary Home",
-    type: "Home Interiors",
-    location: "Kotturpuram, Chennai",
-    year: "2025",
-    image: "/uploads/189a5f18-c697-4ead-8705-831891628dce.JPG",
-    desc: "A harmonious blend of classic and contemporary design featuring plush seating, a sleek TV unit, and subtle gold accents.",
-    tags: ["Contemporary", "Living Room", "Gold Accents"],
-  },
-  {
-    slug: "serene-minimalist-lounge",
-    title: "Serene Minimalist Lounge",
-    type: "Apartment Interiors",
-    location: "Alwarpet, Chennai",
-    year: "2025",
-    image: "/uploads/5f01e54c-e8b3-492e-b670-9351e05cfbfa.JPG",
-    desc: "A calming minimalist lounge characterized by neutral tones, soft textures, and a custom fluted wood TV console.",
-    tags: ["Minimalist", "Fluted Wood", "Neutral Tones"],
-  },
-  {
-    slug: "urban-chic-living",
-    title: "Urban Chic Living",
-    type: "Home Interiors",
-    location: "T Nagar, Chennai",
-    year: "2025",
-    image: "/uploads/8a5598b8-eb9b-49e9-9395-bff739436936.JPG",
-    desc: "A sophisticated urban living area with a statement marble accent wall, elegant lighting, and rich fabric upholstery.",
-    tags: ["Urban Chic", "Marble Wall", "Elegant Lighting"],
-  },
-  {
-    slug: "modern-transitional-space",
-    title: "Modern Transitional Space",
-    type: "Apartment Interiors",
-    location: "Poe's Garden, Chennai",
-    year: "2025",
-    image: "/uploads/acd9d584-f486-460a-870d-ae88aa8eeddb.JPG",
-    desc: "An inviting transitional living room that balances modern clean lines with traditional warmth, featuring a bespoke media unit.",
-    tags: ["Transitional", "Bespoke", "Living Room"],
-  },
-  {
-    slug: "luxe-monochromatic-suite",
-    title: "Luxe Monochromatic Suite",
-    type: "Home Interiors",
-    location: "Nandanam, Chennai",
-    year: "2025",
-    image: "/uploads/db649237-5bd4-499a-b73b-ada56f82c613.JPG",
-    desc: "A luxurious monochromatic setting with textured wall panels, a sleek console, and carefully curated ambient lighting.",
-    tags: ["Monochromatic", "Textured Panels", "Luxe"],
-  },
-];
+// ─── Fetch Project Data ───────────────────────────────────────────────────────
+const fetchProjects = createServerFn({ method: "GET" }).handler(async () => {
+  try {
+    const dataPath = nodePath.resolve(process.cwd(), "public", "data", "projects.json");
+    const fileData = await fsPromises.readFile(dataPath, "utf-8");
+    return JSON.parse(fileData);
+  } catch (err) {
+    console.error("Failed to load projects:", err);
+    return [];
+  }
+});
 
 // ─── Animation variants ────────────────────────────────────────────────────────
 const fadeUp = {
@@ -199,7 +60,7 @@ function ProjectCard({
   layout,
   onClick,
 }: {
-  project: (typeof newProjects)[0];
+  project: any;
   index: number;
   layout: string;
   onClick: () => void;
@@ -285,7 +146,7 @@ function ProjectCard({
 }
 
 // ─── Featured hero card (first project) ──────────────────────────────────────
-function FeaturedCard({ project, onClick }: { project: (typeof newProjects)[0]; onClick: () => void }) {
+function FeaturedCard({ project, onClick }: { project: any; onClick: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const yImg = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
@@ -365,21 +226,22 @@ function Ticker({ n, suffix }: { n: number; suffix: string }) {
 export const Route = createFileRoute("/projects")({
   head: () => ({
     meta: [
-      { title: "Projects — CoreLine Interiors" },
-      { name: "description", content: "Selected work by CoreLine Interiors: luxury villas, apartments, modular kitchens, offices and custom furniture across Chennai." },
-      { property: "og:title", content: "Projects — CoreLine Interiors" },
+      { title: "Projects — CoreLine Interior" },
+      { name: "description", content: "Selected work by CoreLine Interior: luxury villas, apartments, modular kitchens, offices and custom furniture across Pollachi." },
+      { property: "og:title", content: "Projects — CoreLine Interior" },
       { property: "og:url", content: "/projects" },
     ],
     links: [{ rel: "canonical", href: "/projects" }],
   }),
+  loader: () => fetchProjects(),
   component: Projects,
 });
 
 function Projects() {
-  const allProjects = newProjects;
-  const types = useMemo(() => ["All", ...Array.from(new Set(allProjects.map((p) => p.type)))], []);
+  const allProjects = (Route.useLoaderData() as any[]) || [];
+  const types = useMemo(() => ["All", ...Array.from(new Set(allProjects.map((p) => p.type)))], [allProjects]);
   const [filter, setFilter] = useState<string>("All");
-  const [selectedProject, setSelectedProject] = useState<(typeof newProjects)[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any | null>(null);
   const filtered = filter === "All" ? allProjects : allProjects.filter((p) => p.type === filter);
   const [featured, ...rest] = filtered;
 

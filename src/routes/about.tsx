@@ -7,9 +7,9 @@ import { ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — CoreLine Interiors" },
-      { name: "description", content: "Meet CoreLine Interiors, a Chennai luxury interior design studio with over a decade of work in homes, villas and commercial spaces." },
-      { property: "og:title", content: "About CoreLine Interiors" },
+      { title: "About — CoreLine Interior" },
+      { name: "description", content: "Meet CoreLine Interior, a Pollachi luxury interior design studio with over a decade of work in homes, villas and commercial spaces." },
+      { property: "og:title", content: "About CoreLine Interior" },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],

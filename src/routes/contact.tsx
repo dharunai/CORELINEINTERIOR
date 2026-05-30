@@ -6,9 +6,9 @@ import { useState } from "react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — CoreLine Interiors" },
-      { name: "description", content: "Schedule a private consultation with CoreLine Interiors. Luxury interior design studio based in Chennai." },
-      { property: "og:title", content: "Contact CoreLine Interiors" },
+      { title: "Contact — CoreLine Interior" },
+      { name: "description", content: "Schedule a private consultation with CoreLine Interior. Luxury interior design studio based in Pollachi." },
+      { property: "og:title", content: "Contact CoreLine Interior" },
       { property: "og:url", content: "/contact" },
     ],
     links: [{ rel: "canonical", href: "/contact" }],
@@ -56,7 +56,7 @@ function Contact() {
                 <Mail className="h-4 w-4 text-accent" /> studio@coreline.in
               </a>
               <div className="flex items-center gap-4">
-                <MapPin className="h-4 w-4 text-accent" /> Boat Club Road, Chennai
+                <MapPin className="h-4 w-4 text-accent" /> Pollachi
               </div>
               <a href="https://wa.me/916383620372" target="_blank" rel="noreferrer" className="flex items-center gap-4 link-underline">
                 <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp +91 63836 20372
@@ -66,7 +66,7 @@ function Contact() {
             <div className="aspect-[4/3] overflow-hidden border border-border">
               <iframe
                 title="CoreLine Studio location"
-                src="https://www.google.com/maps?q=Chennai&output=embed"
+                src="https://www.google.com/maps?q=Pollachi&output=embed"
                 className="h-full w-full grayscale"
                 loading="lazy"
               />

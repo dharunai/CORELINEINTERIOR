@@ -10,9 +10,9 @@ import { projects, services, process, stats, testimonials } from "@/components/s
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CoreLine Interiors — Luxury Interior Designers in Chennai" },
-      { name: "description", content: "Crafting elegant, editorial homes, villas and commercial spaces. CoreLine Interiors is a luxury interior design studio based in Chennai." },
-      { property: "og:title", content: "CoreLine Interiors — Luxury Interior Designers in Chennai" },
+      { title: "CoreLine Interior — Luxury Interior Designers in Pollachi" },
+      { name: "description", content: "Crafting elegant, editorial homes, villas and commercial spaces. CoreLine Interior is a luxury interior design studio based in Pollachi." },
+      { property: "og:title", content: "CoreLine Interior — Luxury Interior Designers in Pollachi" },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -21,9 +21,9 @@ export const Route = createFileRoute("/")({
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "InteriorDesignBusiness",
-        name: "CoreLine Interiors",
-        description: "Luxury interior design studio in Chennai.",
-        areaServed: "Chennai",
+        name: "CoreLine Interior",
+        description: "Luxury interior design studio in Pollachi.",
+        areaServed: "Pollachi",
         priceRange: "$$$",
       }),
     }],
@@ -64,7 +64,7 @@ function Home() {
             transition={{ duration: 0.9, delay: 0.2 }}
             className="eyebrow text-cream/80"
           >
-            CoreLine Interiors — Est. 2024
+            CoreLine Interior — Est. 2024
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
@@ -81,7 +81,7 @@ function Home() {
             transition={{ duration: 0.9, delay: 0.6 }}
             className="mt-8 max-w-xl text-base text-cream/75 leading-relaxed"
           >
-            A Chennai-based interior design studio shaping homes, villas and commercial
+            A Pollachi-based interior design studio shaping homes, villas and commercial
             spaces with restraint, craft and quiet luxury.
           </motion.p>
           <motion.div

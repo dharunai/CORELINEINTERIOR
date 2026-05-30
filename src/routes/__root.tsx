@@ -72,12 +72,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "CoreLine Interiors — Luxury Interior Designers in Chennai" },
-      { name: "description", content: "CoreLine Interiors is a luxury interior design studio in Chennai crafting homes, villas, modular kitchens and commercial spaces with editorial restraint." },
-      { property: "og:title", content: "CoreLine Interiors — Luxury Interior Designers in Chennai" },
-      { property: "og:description", content: "Refined homes, villas and commercial interiors by CoreLine Interiors." },
+      { title: "CoreLine Interior — Luxury Interior Designers in Pollachi" },
+      { name: "description", content: "CoreLine Interior is a luxury interior design studio in Pollachi crafting homes, villas, modular kitchens and commercial spaces with editorial restraint." },
+      { property: "og:title", content: "CoreLine Interior — Luxury Interior Designers in Pollachi" },
+      { property: "og:description", content: "Refined homes, villas and commercial interiors by CoreLine Interior." },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "CoreLine Interiors" },
+      { property: "og:site_name", content: "CoreLine Interior" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -112,6 +112,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 import { Cursor } from "@/components/site/Cursor";
+import { Toaster } from "sonner";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -119,6 +120,18 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Cursor />
+      <Toaster 
+        position="top-center" 
+        toastOptions={{
+          className: "bg-[#F4F0E6] text-[#1A1A1A] border border-[#1A1A1A]/20 shadow-md font-sans text-xs uppercase tracking-widest rounded-none",
+          style: {
+            backgroundColor: "var(--background, #F4F0E6)",
+            color: "var(--foreground, #1A1A1A)",
+            border: "1px solid var(--border, rgba(26,26,26,0.2))",
+            borderRadius: "0",
+          }
+        }} 
+      />
       <Navbar />
       <main className="min-h-screen">
         <Outlet />

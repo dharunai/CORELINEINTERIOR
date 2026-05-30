@@ -7,10 +7,10 @@ export function Footer() {
       <div className="container-luxe py-20 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-4">
-            <img src="/src/assets/logo.png" alt="CoreLine Interiors" className="h-16 w-auto" />
+            <img src="/src/assets/logo.png" alt="CoreLine Interior" className="h-16 w-auto" />
             <div className="flex flex-col -space-y-1">
               <span className="font-display text-2xl tracking-tight text-background">CoreLine</span>
-              <span className="eyebrow text-xs tracking-[0.2em] text-background/70">Interiors</span>
+              <span className="eyebrow text-xs tracking-[0.2em] text-background/70">Interior</span>
             </div>
           </div>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-background/70">
@@ -32,7 +32,7 @@ export function Footer() {
             </a>
             <span className="inline-flex items-center gap-3">
               <MapPin className="h-4 w-4 text-accent" />
-              <span>Boat Club Road, Chennai</span>
+              <span>Pollachi</span>
             </span>
           </div>
         </div>
@@ -66,14 +66,14 @@ export function Footer() {
       <div className="border-t border-background/10">
         <div className="container-luxe py-10 flex flex-col md:flex-row md:items-start md:justify-between gap-8 text-xs text-background/50">
           <div className="flex flex-col gap-2">
-            <span className="tracking-wide">© {new Date().getFullYear()} CoreLine Interiors. All rights reserved.</span>
+            <span className="tracking-wide">© {new Date().getFullYear()} CoreLine Interior. All rights reserved.</span>
             <span className="max-w-sm mt-1 leading-relaxed opacity-80">
               Crafting digital experiences with the same restraint, craft, and obsession to detail as physical spaces.
             </span>
           </div>
           
-          <div className="flex flex-col gap-4 md:items-end">
-            <span className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 tracking-[0.18em] uppercase">
+          <div className="flex flex-col gap-2 md:items-end md:text-right">
+            <span className="inline-flex flex-wrap md:justify-end items-center gap-x-4 gap-y-2 tracking-[0.18em] uppercase">
               <a
                 href="https://thegenworks.com"
                 target="_blank"
@@ -94,18 +94,8 @@ export function Footer() {
               </a>
             </span>
 
-            <span className="inline-flex flex-wrap items-center gap-x-4 gap-y-2 tracking-[0.18em] uppercase text-background/40">
-              <span>Led by Dharun Shanmugavel</span>
-              <a
-                href="https://www.linkedin.com/in/dharun-shanmugavel-bb7304315/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Dharun Shanmugavel on LinkedIn"
-                className="inline-flex items-center gap-1 link-underline hover:text-background transition-colors"
-              >
-                <Linkedin className="h-3.5 w-3.5 text-accent" />
-                <span>LinkedIn</span>
-              </a>
+            <span className="max-w-sm mt-1 leading-relaxed opacity-80 normal-case tracking-normal">
+              At TheGenWorks, we blend creativity, automation, and AI to help businesses scale faster, save time, and connect smarter. Our mission is to make innovation practical and powerful.
             </span>
           </div>
         </div>
