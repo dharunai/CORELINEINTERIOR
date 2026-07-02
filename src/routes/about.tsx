@@ -65,7 +65,38 @@ function About() {
         </div>
       </section>
 
-      <section className="mt-28 md:mt-40 border-y border-border/60 bg-background">
+      {/* FOUNDER SECTION */}
+      <section className="py-24 md:py-32 bg-secondary/30">
+        <div className="container-luxe grid gap-12 md:grid-cols-12 md:gap-20 items-center">
+          <Reveal className="md:col-span-5 md:col-start-2">
+            <div className="aspect-[4/5] overflow-hidden bg-muted">
+              {/* Note: object-top or object-center can be adjusted depending on the face position in the image */}
+              <img src="/ceo.jpg" alt="Mr. Lalprasath - CEO and Founder" loading="lazy" className="h-full w-full object-cover object-top" />
+            </div>
+          </Reveal>
+          <div className="md:col-span-5 space-y-6">
+            <Reveal>
+              <span className="eyebrow">Leadership</span>
+              <h2 className="mt-4 font-display text-4xl md:text-5xl leading-[1.1]">
+                Meet Mr. Lalprasath
+              </h2>
+              <div className="text-accent text-xs tracking-[0.2em] uppercase mt-3">CEO & Founder</div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-muted-foreground leading-relaxed mt-6">
+                With a profound passion for design and spatial dynamics, Lalprasath founded CoreLine Interior with a singular vision: to craft environments that inspire and elevate everyday living. His approach blends timeless aesthetics with meticulous functionality.
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="text-muted-foreground leading-relaxed">
+                Under his leadership, CoreLine has grown into one of Pollachi's most sought-after luxury interior design studios. Lalprasath is deeply involved in every project, ensuring an unwavering commitment to quality, bespoke craftsmanship, and a deeply personalized client experience.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-12 md:mt-24 border-y border-border/60 bg-background">
         <div className="container-luxe grid grid-cols-2 gap-x-6 gap-y-12 py-16 md:grid-cols-4 md:py-20">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
