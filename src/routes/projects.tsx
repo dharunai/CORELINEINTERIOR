@@ -480,6 +480,7 @@ function Projects() {
                   </div>
                 </div>
               </div>
+              </div>
             </motion.div>
           </motion.div>
         )}
