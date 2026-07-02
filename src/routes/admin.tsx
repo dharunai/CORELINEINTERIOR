@@ -218,7 +218,7 @@ function AdminPage() {
     const user = formData.get("username");
     const pass = formData.get("password");
 
-    if (user === "thegenworks" && pass === "coreline") {
+    if (user === "ADMIN" && pass === "CORELINE2026") {
       localStorage.setItem("coreline_admin_auth", "true");
       setIsAuthenticated(true);
       toast.success("Welcome back!");

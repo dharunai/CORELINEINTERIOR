@@ -4,10 +4,10 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero-living.jpg";
 import serviceHome from "@/assets/service-home.png";
-import serviceCeiling from "@/assets/service-ceiling.png";
+import serviceApartment from "@/assets/service-apartment.png";
 import aboutImg from "@/assets/about-studio.jpg";
 
-const heroImages = [heroImg, serviceHome, serviceCeiling];
+const heroImages = [heroImg, serviceHome, serviceApartment];
 import { Reveal } from "@/components/site/Reveal";
 import { projects, services, process, stats, testimonials } from "@/components/site/data";
 
