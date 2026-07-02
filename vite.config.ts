@@ -8,8 +8,7 @@ export default defineConfig({
   plugins: [
     tanstackStart({
       server: { 
-        preset: "node-server",
-        entry: "src/server.ts" 
+        preset: "node-server"
       },
     }),
     react(),
