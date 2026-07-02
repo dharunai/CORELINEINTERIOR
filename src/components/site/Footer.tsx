@@ -6,11 +6,11 @@ export function Footer() {
     <footer className="border-t border-border/60 bg-foreground text-background">
       <div className="container-luxe py-20 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
-          <div className="flex items-center gap-4">
-            <img src="/src/assets/logo.png" alt="CoreLine Interior" className="h-16 w-auto" />
-            <div className="flex flex-col -space-y-1">
-              <span className="font-display text-2xl tracking-tight text-background">CoreLine</span>
-              <span className="eyebrow text-xs tracking-[0.2em] text-background/70">Interior</span>
+          <div className="flex items-center gap-2 md:gap-3">
+            <img src="/src/assets/logo.png" alt="CoreLine Interior" className="h-12 md:h-14 w-auto" />
+            <div className="flex flex-col items-start -space-y-1">
+              <span className="font-display text-lg md:text-xl tracking-tight text-background -ml-0.5">CoreLine</span>
+              <span className="eyebrow text-[9px] md:text-[10px] tracking-[0.2em] text-background/70">Interior</span>
             </div>
           </div>
           <p className="mt-6 max-w-md text-sm leading-relaxed text-background/70">

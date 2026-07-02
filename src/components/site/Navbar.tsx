@@ -33,11 +33,11 @@ export function Navbar() {
       }`}
     >
       <div className="container-luxe flex h-20 items-center justify-between">
-        <Link to="/" className="flex items-center gap-4" onClick={() => setOpen(false)}>
-          <img src="/src/assets/logo.png" alt="CoreLine Interior" className="h-14 w-auto" />
-          <div className="flex flex-col -space-y-0.5">
-            <span className="font-display text-2xl tracking-tight text-foreground">CoreLine</span>
-            <span className="eyebrow text-[11px] tracking-[0.3em] text-foreground/60">Interior</span>
+        <Link to="/" className="flex items-center gap-2 md:gap-3" onClick={() => setOpen(false)}>
+          <img src="/src/assets/logo.png" alt="CoreLine Interior" className="h-11 md:h-14 w-auto" />
+          <div className="flex flex-col items-start -space-y-0.5">
+            <span className="font-display text-lg md:text-xl tracking-tight text-foreground -ml-0.5">CoreLine</span>
+            <span className="eyebrow text-[9px] md:text-[10px] tracking-[0.3em] text-foreground/60">Interior</span>
           </div>
         </Link>
 
