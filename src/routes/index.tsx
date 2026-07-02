@@ -4,10 +4,9 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero-living.jpg";
 import serviceHome from "@/assets/service-home.png";
-import serviceApartment from "@/assets/service-apartment.png";
 import aboutImg from "@/assets/about-studio.jpg";
 
-const heroImages = [heroImg, serviceHome, serviceApartment];
+const heroImages = [heroImg, serviceHome];
 import { Reveal } from "@/components/site/Reveal";
 import { projects, services, process, stats, testimonials } from "@/components/site/data";
 
@@ -47,7 +46,7 @@ function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5500);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
