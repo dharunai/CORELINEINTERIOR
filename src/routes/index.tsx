@@ -3,12 +3,12 @@ import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import heroLiving from "@/assets/hero-living.jpg";
-import heroIndianLiving from "@/assets/hero-indian-living.png";
-import heroIndianKitchen from "@/assets/hero-indian-kitchen.png";
-import heroIndianBedroom from "@/assets/hero-indian-bedroom.png";
+import heroBedroom from "@/assets/hero-bedroom.png";
+import heroKitchen from "@/assets/hero-kitchen.png";
+import heroVilla from "@/assets/hero-villa.png";
 import aboutImg from "@/assets/about-studio.jpg";
 
-const heroImages = [heroLiving, heroIndianLiving, heroIndianKitchen, heroIndianBedroom];
+const heroImages = [heroLiving, heroBedroom, heroKitchen, heroVilla];
 import { Reveal } from "@/components/site/Reveal";
 import { projects, services, process, stats, testimonials } from "@/components/site/data";
 
@@ -48,7 +48,7 @@ function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
+    }, 5500);
     return () => clearInterval(timer);
   }, []);
 
@@ -62,11 +62,15 @@ function Home() {
               key={currentImageIndex}
               src={heroImages[currentImageIndex]}
               alt="Luxury interior space"
-              className="absolute inset-0 h-full w-full object-cover animate-live-zoom"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.5, ease: "easeInOut" }}
+              className="absolute inset-0 h-full w-full object-cover"
+              initial={{ opacity: 0, scale: 1.08, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1.03, filter: "blur(0px)" }}
+              exit={{ opacity: 0, scale: 1, filter: "blur(5px)" }}
+              transition={{ 
+                opacity: { duration: 2.5, ease: "easeInOut" },
+                filter: { duration: 2, ease: "easeOut" },
+                scale: { duration: 8, ease: "linear" } 
+              }}
               fetchPriority={currentImageIndex === 0 ? "high" : "auto"}
             />
           </AnimatePresence>
