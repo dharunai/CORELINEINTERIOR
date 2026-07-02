@@ -71,7 +71,7 @@ function About() {
           <Reveal className="md:col-span-5 md:col-start-2">
             <div className="aspect-[4/5] overflow-hidden bg-muted">
               {/* Note: object-top or object-center can be adjusted depending on the face position in the image */}
-              <img src="/ceo.jpg" alt="Mr. Lalprasath - CEO and Founder" loading="lazy" className="h-full w-full object-cover object-top" />
+              <img src="/ceo.jpg" alt="Mr. Lalprasath - CEO and Founder" loading="lazy" className="h-full w-full object-cover object-center" />
             </div>
           </Reveal>
           <div className="md:col-span-5 space-y-6">
