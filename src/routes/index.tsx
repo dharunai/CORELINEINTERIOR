@@ -158,13 +158,13 @@ function Home() {
                     className="h-full w-full object-cover"
                   />
                 </div>
-                <div className="absolute inset-0 z-10 bg-background/80 group-hover:bg-background/10 transition-colors duration-500" />
+                <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/90 via-background/30 to-background/10 md:bg-none md:bg-background/80 md:group-hover:bg-background/10 transition-colors duration-500" />
                 
                 <div className="relative z-20 p-8 md:p-12 h-full flex flex-col justify-between min-h-[320px]">
                   <div className="text-xs tracking-[0.3em] uppercase text-accent font-medium">0{i + 1}</div>
                   <div>
-                    <h3 className="font-display text-3xl md:text-4xl transition-colors group-hover:text-foreground">{s.title}</h3>
-                    <p className="mt-4 text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors">{s.desc}</p>
+                    <h3 className="font-display text-2xl md:text-4xl transition-colors group-hover:text-foreground">{s.title}</h3>
+                    <p className="mt-3 md:mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/90 transition-colors">{s.desc}</p>
                   </div>
                 </div>
               </Reveal>

@@ -89,7 +89,7 @@ export function Navbar() {
                   <Link
                     to={l.to}
                     onClick={() => setOpen(false)}
-                    className="font-display text-3xl tracking-tight"
+                    className="font-display text-2xl tracking-tight"
                   >
                     {l.label}
                   </Link>
