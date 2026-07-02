@@ -2,14 +2,19 @@ import { spawn } from "child_process";
 import path from "path";
 
 const port = process.env.PORT || 3000;
-console.log(`Starting production preview server on port ${port}...`);
+console.log(`Starting Vinxi production server on port ${port}...`);
 
-const vitePath = path.resolve("node_modules/vite/bin/vite.js");
-console.log(`Resolved Vite path: ${vitePath}`);
+// Resolve path to local vinxi binary
+const vinxiPath = path.resolve("node_modules/vinxi/bin/cli.mjs");
+console.log(`Resolved Vinxi path: ${vinxiPath}`);
 
-const child = spawn("node", [vitePath, "preview", "--port", port, "--host"], {
+const child = spawn("node", [vinxiPath, "start"], {
   stdio: "inherit",
   shell: true,
+  env: {
+    ...process.env,
+    PORT: port,
+  },
 });
 
 child.on("error", (err) => {
