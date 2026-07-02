@@ -3,14 +3,12 @@ import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import heroLiving from "@/assets/hero-living.jpg";
-import heroBedroom from "@/assets/hero-bedroom.png";
-import heroKitchen from "@/assets/hero-kitchen.png";
-import heroVilla from "@/assets/hero-villa.png";
-import heroBathroom from "@/assets/hero-bathroom.png";
-import heroOffice from "@/assets/hero-office.png";
+import heroIndianLiving from "@/assets/hero-indian-living.png";
+import heroIndianKitchen from "@/assets/hero-indian-kitchen.png";
+import heroIndianBedroom from "@/assets/hero-indian-bedroom.png";
 import aboutImg from "@/assets/about-studio.jpg";
 
-const heroImages = [heroLiving, heroBedroom, heroKitchen, heroVilla, heroBathroom, heroOffice];
+const heroImages = [heroLiving, heroIndianLiving, heroIndianKitchen, heroIndianBedroom];
 import { Reveal } from "@/components/site/Reveal";
 import { projects, services, process, stats, testimonials } from "@/components/site/data";
 
