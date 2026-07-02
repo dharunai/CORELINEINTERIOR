@@ -4,182 +4,162 @@ import fs from "node:fs";
 
 const port = process.env.PORT || 3000;
 
-// Write startup log
+// Write startup log immediately
 const logFile = path.resolve("startup.log");
 function log(msg) {
   const line = `[${new Date().toISOString()}] ${msg}\n`;
   console.log(msg);
-  fs.appendFileSync(logFile, line);
+  try {
+    fs.appendFileSync(logFile, line);
+  } catch (e) {
+    console.error("Could not write to startup.log", e);
+  }
 }
 
-log(`Starting server... PORT=${port}`);
-log(`CWD: ${process.cwd()}`);
+log(`--- NEW STARTUP --- PORT=${port}`);
 log(`Node version: ${process.version}`);
+log(`CWD: ${process.cwd()}`);
 
-// Check if dist directory exists
 const distServerPath = path.resolve("dist/server/server.js");
 const distClientPath = path.resolve("dist/client");
 
-log(`Checking dist/server/server.js: ${fs.existsSync(distServerPath)}`);
-log(`Checking dist/client: ${fs.existsSync(distClientPath)}`);
-
-// List dist directory contents
-try {
-  if (fs.existsSync(path.resolve("dist"))) {
-    const distContents = fs.readdirSync(path.resolve("dist"));
-    log(`dist/ contents: ${JSON.stringify(distContents)}`);
-    if (fs.existsSync(path.resolve("dist/server"))) {
-      const serverContents = fs.readdirSync(path.resolve("dist/server"));
-      log(`dist/server/ contents: ${JSON.stringify(serverContents)}`);
-    }
-  } else {
-    log("ERROR: dist/ directory does NOT exist!");
-  }
-} catch (e) {
-  log(`Error listing dist: ${e.message}`);
-}
-
-let app;
-
-try {
-  const serverModule = await import(distServerPath);
-  app = serverModule.default;
-  log(`Server module loaded successfully. Keys: ${Object.keys(serverModule)}`);
-  log(`App has fetch: ${typeof app?.fetch}`);
-} catch (err) {
-  log(`FATAL: Failed to import dist/server/server.js: ${err.message}`);
-  log(`Stack: ${err.stack}`);
-  
-  // Start a basic error server so Hostinger doesn't 503
-  http.createServer((req, res) => {
-    res.writeHead(500, { "Content-Type": "text/html" });
-    res.end(`<h1>Server Error</h1><pre>${err.message}\n\n${err.stack}</pre>`);
-  }).listen(port, "0.0.0.0", () => {
-    log(`Error fallback server running on port ${port}`);
-  });
-  
-  // Don't proceed
-  throw err;
-}
-
-function getMimeType(ext) {
-  const types = {
-    ".html": "text/html",
-    ".js": "application/javascript",
-    ".css": "text/css",
-    ".json": "application/json",
-    ".png": "image/png",
-    ".jpg": "image/jpeg",
-    ".jpeg": "image/jpeg",
-    ".gif": "image/gif",
-    ".svg": "image/svg+xml",
-    ".ico": "image/x-icon",
-    ".woff": "font/woff",
-    ".woff2": "font/woff2",
-    ".ttf": "font/ttf",
-    ".webp": "image/webp",
-    ".webm": "video/webm",
-    ".mp4": "video/mp4",
-  };
-  return types[ext] || "application/octet-stream";
-}
-
-const server = http.createServer(async (req, res) => {
+async function startServer() {
   try {
-    const urlPath = new URL(req.url, `http://localhost:${port}`).pathname;
+    log(`Checking dist/server/server.js: ${fs.existsSync(distServerPath)}`);
+    log(`Checking dist/client: ${fs.existsSync(distClientPath)}`);
+    
+    let app;
+    try {
+      const serverModule = await import(distServerPath);
+      app = serverModule.default;
+      log(`Server module loaded successfully.`);
+    } catch (importErr) {
+      log(`FATAL: Failed to import dist/server/server.js: ${importErr.message}`);
+      throw importErr;
+    }
 
-    // Serve static files from dist/client/assets/
-    if (urlPath.startsWith("/assets/")) {
-      const staticFilePath = path.join(distClientPath, urlPath);
-      if (fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
-        const ext = path.extname(staticFilePath);
-        const content = fs.readFileSync(staticFilePath);
-        res.writeHead(200, {
-          "Content-Type": getMimeType(ext),
-          "Cache-Control": "public, max-age=31536000, immutable",
+    function getMimeType(ext) {
+      const types = {
+        ".html": "text/html",
+        ".js": "application/javascript",
+        ".css": "text/css",
+        ".json": "application/json",
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".gif": "image/gif",
+        ".svg": "image/svg+xml",
+        ".ico": "image/x-icon",
+        ".woff": "font/woff",
+        ".woff2": "font/woff2",
+        ".ttf": "font/ttf",
+        ".webp": "image/webp",
+        ".webm": "video/webm",
+        ".mp4": "video/mp4",
+      };
+      return types[ext] || "application/octet-stream";
+    }
+
+    const server = http.createServer(async (req, res) => {
+      try {
+        const urlPath = new URL(req.url, `http://localhost:${port}`).pathname;
+
+        // Serve static files from dist/client/assets/
+        if (urlPath.startsWith("/assets/")) {
+          const staticFilePath = path.join(distClientPath, urlPath);
+          if (fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
+            const ext = path.extname(staticFilePath);
+            const content = fs.readFileSync(staticFilePath);
+            res.writeHead(200, {
+              "Content-Type": getMimeType(ext),
+              "Cache-Control": "public, max-age=31536000, immutable",
+            });
+            res.end(content);
+            return;
+          }
+        }
+
+        // SSR request
+        const headers = new Headers();
+        for (const [key, value] of Object.entries(req.headers)) {
+          if (value) {
+            if (Array.isArray(value)) {
+              value.forEach((v) => headers.append(key, v));
+            } else {
+              headers.set(key, value);
+            }
+          }
+        }
+
+        const protocol = req.headers["x-forwarded-proto"] || "http";
+        const host = req.headers["x-forwarded-host"] || req.headers.host || `localhost:${port}`;
+        const url = new URL(req.url, `${protocol}://${host}`);
+
+        let body = undefined;
+        if (req.method !== "GET" && req.method !== "HEAD") {
+          const chunks = [];
+          for await (const chunk of req) {
+            chunks.push(chunk);
+          }
+          body = Buffer.concat(chunks);
+        }
+
+        const request = new Request(url.toString(), {
+          method: req.method,
+          headers,
+          body,
+          duplex: "half",
         });
-        res.end(content);
-        return;
-      }
-    }
 
-    // Serve uploaded images from public/uploads/
-    if (urlPath.startsWith("/uploads/")) {
-      const uploadFilePath = path.join(path.resolve("public"), urlPath);
-      if (fs.existsSync(uploadFilePath) && fs.statSync(uploadFilePath).isFile()) {
-        const ext = path.extname(uploadFilePath);
-        const content = fs.readFileSync(uploadFilePath);
-        res.writeHead(200, { "Content-Type": getMimeType(ext) });
-        res.end(content);
-        return;
-      }
-    }
+        const response = await app.fetch(request);
 
-    // SSR: convert Node request to Web Request
-    const headers = new Headers();
-    for (const [key, value] of Object.entries(req.headers)) {
-      if (value) {
-        if (Array.isArray(value)) {
-          value.forEach((v) => headers.append(key, v));
-        } else {
-          headers.set(key, value);
+        const responseHeaders = {};
+        response.headers.forEach((value, key) => {
+          if (responseHeaders[key]) {
+            if (Array.isArray(responseHeaders[key])) {
+              responseHeaders[key].push(value);
+            } else {
+              responseHeaders[key] = [responseHeaders[key], value];
+            }
+          } else {
+            responseHeaders[key] = value;
+          }
+        });
+
+        res.writeHead(response.status, response.statusText, responseHeaders);
+
+        if (response.body) {
+          const reader = response.body.getReader();
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            res.write(value);
+          }
         }
-      }
-    }
-
-    const protocol = req.headers["x-forwarded-proto"] || "http";
-    const host = req.headers["x-forwarded-host"] || req.headers.host || `localhost:${port}`;
-    const url = new URL(req.url, `${protocol}://${host}`);
-
-    let body = undefined;
-    if (req.method !== "GET" && req.method !== "HEAD") {
-      const chunks = [];
-      for await (const chunk of req) {
-        chunks.push(chunk);
-      }
-      body = Buffer.concat(chunks);
-    }
-
-    const request = new Request(url.toString(), {
-      method: req.method,
-      headers,
-      body,
-      duplex: "half",
-    });
-
-    const response = await app.fetch(request);
-
-    const responseHeaders = {};
-    response.headers.forEach((value, key) => {
-      if (responseHeaders[key]) {
-        if (Array.isArray(responseHeaders[key])) {
-          responseHeaders[key].push(value);
-        } else {
-          responseHeaders[key] = [responseHeaders[key], value];
-        }
-      } else {
-        responseHeaders[key] = value;
+        res.end();
+      } catch (err) {
+        log(`Request error: ${err.message}`);
+        res.writeHead(500, { "Content-Type": "text/plain" });
+        res.end("Internal Server Error");
       }
     });
 
-    res.writeHead(response.status, response.statusText, responseHeaders);
-
-    if (response.body) {
-      const reader = response.body.getReader();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        res.write(value);
-      }
-    }
-    res.end();
+    server.listen(port, "0.0.0.0", () => {
+      log(`Server successfully listening on port ${port}`);
+    });
+    
   } catch (err) {
-    log(`Request error: ${err.message}`);
-    res.writeHead(500, { "Content-Type": "text/plain" });
-    res.end("Internal Server Error");
+    log(`Startup error: ${err.message}\n${err.stack}`);
+    // Start fallback server
+    http.createServer((req, res) => {
+      res.writeHead(500, { "Content-Type": "text/html" });
+      res.end(`<h1>Server Error</h1><pre>${err.message}\n${err.stack}</pre>`);
+    }).listen(port, "0.0.0.0", () => {
+      log(`Fallback server listening on port ${port}`);
+    });
   }
-});
+}
 
-server.listen(port, "0.0.0.0", () => {
-  log(`CoreLine Interior server running on http://0.0.0.0:${port}`);
+startServer().catch(err => {
+  log(`Unhandled error: ${err.message}`);
 });
