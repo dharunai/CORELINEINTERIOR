@@ -6,9 +6,11 @@ import heroLiving from "@/assets/hero-living.jpg";
 import heroBedroom from "@/assets/hero-bedroom.png";
 import heroKitchen from "@/assets/hero-kitchen.png";
 import heroVilla from "@/assets/hero-villa.png";
+import heroBathroom from "@/assets/hero-bathroom.png";
+import heroOffice from "@/assets/hero-office.png";
 import aboutImg from "@/assets/about-studio.jpg";
 
-const heroImages = [heroLiving, heroBedroom, heroKitchen, heroVilla];
+const heroImages = [heroLiving, heroBedroom, heroKitchen, heroVilla, heroBathroom, heroOffice];
 import { Reveal } from "@/components/site/Reveal";
 import { projects, services, process, stats, testimonials } from "@/components/site/data";
 
@@ -48,7 +50,7 @@ function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4500);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
@@ -62,9 +64,9 @@ function Home() {
               key={currentImageIndex}
               src={heroImages[currentImageIndex]}
               alt="Luxury interior space"
-              className="absolute inset-0 h-full w-full object-cover"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
+              className="absolute inset-0 h-full w-full object-cover animate-live-zoom"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
               fetchPriority={currentImageIndex === 0 ? "high" : "auto"}
