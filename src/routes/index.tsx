@@ -48,7 +48,7 @@ function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 5500);
+    }, 8000);
     return () => clearInterval(timer);
   }, []);
 
@@ -62,14 +62,14 @@ function Home() {
               key={currentImageIndex}
               src={heroImages[currentImageIndex]}
               alt="Luxury interior space"
-              className="absolute inset-0 h-full w-full object-cover"
-              initial={{ opacity: 0, scale: 1.08, filter: "blur(10px)" }}
-              animate={{ opacity: 1, scale: 1.03, filter: "blur(0px)" }}
+              className="absolute inset-0 h-full w-full object-cover mix-blend-lighten"
+              initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+              animate={{ opacity: 1, scale: 1.02, filter: "blur(0px)" }}
               exit={{ opacity: 0, scale: 1, filter: "blur(5px)" }}
               transition={{ 
-                opacity: { duration: 2.5, ease: "easeInOut" },
-                filter: { duration: 2, ease: "easeOut" },
-                scale: { duration: 8, ease: "linear" } 
+                opacity: { duration: 4, ease: "easeInOut" },
+                filter: { duration: 3, ease: "easeOut" },
+                scale: { duration: 12, ease: "linear" } 
               }}
               fetchPriority={currentImageIndex === 0 ? "high" : "auto"}
             />

@@ -430,29 +430,29 @@ function Projects() {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl h-[90vh] md:h-[85vh] bg-background overflow-hidden flex flex-col md:flex-row shadow-[0_0_80px_-15px_rgba(0,0,0,0.5)] border border-border"
+              className="relative w-full max-w-6xl max-h-[95dvh] md:h-[85dvh] bg-background overflow-y-auto md:overflow-hidden flex flex-col md:flex-row shadow-[0_0_80px_-15px_rgba(0,0,0,0.5)] border border-border rounded-none md:rounded-sm"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full transition-colors text-white"
+                className="absolute top-4 right-4 z-10 p-2.5 bg-black/40 hover:bg-black/60 backdrop-blur-md rounded-full transition-colors text-white shadow-lg"
               >
                 <X className="h-5 w-5" />
               </button>
 
               {/* Image Section */}
-              <div className="w-full md:w-2/3 h-[45vh] md:h-full relative bg-muted/30">
+              <div className="w-full md:w-2/3 h-64 sm:h-80 md:h-full relative bg-muted/30 shrink-0">
                 <img
                   src={selectedProject.image}
                   alt={selectedProject.title}
-                  className="w-full h-full object-contain p-4 md:p-12"
+                  className="w-full h-full object-cover md:object-contain p-0 md:p-12"
                 />
               </div>
 
               {/* Info Section */}
-              <div className="w-full md:w-1/3 p-8 md:p-12 overflow-y-auto bg-foreground/5 flex flex-col justify-center border-t md:border-t-0 md:border-l border-border/50">
-                <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-4">{selectedProject.type}</div>
-                <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6">{selectedProject.title}</h2>
+              <div className="w-full md:w-1/3 p-6 md:p-12 md:overflow-y-auto bg-background md:bg-foreground/5 flex flex-col justify-start md:justify-center border-t md:border-t-0 md:border-l border-border/50 pb-12 md:pb-12">
+                <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-3 md:mb-4">{selectedProject.type}</div>
+                <h2 className="font-display text-3xl md:text-5xl leading-tight mb-4 md:mb-6">{selectedProject.title}</h2>
                 <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
                   <p>{selectedProject.desc}</p>
                 </div>
