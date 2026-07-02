@@ -26,9 +26,9 @@ export function Footer() {
               <MessageCircle className="h-4 w-4 text-accent" />
               <span>WhatsApp +91 63836 20372</span>
             </a>
-            <a href="mailto:studio@coreline.in" className="link-underline inline-flex items-center gap-3">
+            <a href="mailto:corelineinterior@gmail.com" className="link-underline inline-flex items-center gap-3">
               <Mail className="h-4 w-4 text-accent" />
-              <span>studio@coreline.in</span>
+              <span>corelineinterior@gmail.com</span>
             </a>
             <span className="inline-flex items-center gap-3">
               <MapPin className="h-4 w-4 text-accent" />

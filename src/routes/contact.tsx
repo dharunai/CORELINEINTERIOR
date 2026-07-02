@@ -52,8 +52,8 @@ function Contact() {
               <a href="tel:+916383620372" className="flex items-center gap-4 link-underline">
                 <Phone className="h-4 w-4 text-accent" /> +91 63836 20372
               </a>
-              <a href="mailto:studio@coreline.in" className="flex items-center gap-4 link-underline">
-                <Mail className="h-4 w-4 text-accent" /> studio@coreline.in
+              <a href="mailto:corelineinterior@gmail.com" className="flex items-center gap-4 link-underline">
+                <Mail className="h-4 w-4 text-accent" /> corelineinterior@gmail.com
               </a>
               <div className="flex items-center gap-4">
                 <MapPin className="h-4 w-4 text-accent" /> Pollachi
