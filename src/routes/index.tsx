@@ -1,10 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import heroImg from "@/assets/hero-living.jpg";
+import serviceHome from "@/assets/service-home.png";
+import serviceCeiling from "@/assets/service-ceiling.png";
 import aboutImg from "@/assets/about-studio.jpg";
 
+const heroImages = [heroImg, serviceHome, serviceCeiling];
 import { Reveal } from "@/components/site/Reveal";
 import { projects, services, process, stats, testimonials } from "@/components/site/data";
 
@@ -39,19 +42,33 @@ function Home() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
   const overlay = useTransform(scrollYProgress, [0, 1], [0.45, 0.75]);
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5500);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <>
       {/* HERO */}
       <section ref={heroRef} className="relative h-[100svh] w-full overflow-hidden">
-        <motion.div style={{ y, scale }} className="absolute inset-0">
-          <img
-            src={heroImg}
-            alt="Luxury interior living room with floor-to-ceiling windows at golden hour"
-            className="h-full w-full object-cover animate-live-zoom"
-            width={1920}
-            height={1280}
-            fetchPriority="high"
-          />
+        <motion.div style={{ y, scale }} className="absolute inset-0 bg-charcoal">
+          <AnimatePresence mode="popLayout">
+            <motion.img
+              key={currentImageIndex}
+              src={heroImages[currentImageIndex]}
+              alt="Luxury interior space"
+              className="absolute inset-0 h-full w-full object-cover"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeInOut" }}
+              fetchPriority={currentImageIndex === 0 ? "high" : "auto"}
+            />
+          </AnimatePresence>
         </motion.div>
         <motion.div
           style={{ opacity: overlay }}
@@ -248,7 +265,7 @@ function Home() {
           <div className="md:col-span-6">
             <Reveal>
               <span className="eyebrow">The Studio</span>
-              <h2 className="mt-5 font-display text-3xl md:text-5xl leading-[1.08]">
+              <h2 className="mt-5 font-display text-2xl md:text-5xl leading-[1.08]">
                 A practice built on <em className="text-accent not-italic">restraint, craft</em> and an obsession with detail.
               </h2>
             </Reveal>
@@ -326,7 +343,7 @@ function Home() {
         <div className="container-luxe text-center">
           <Reveal>
             <span className="eyebrow">Begin</span>
-            <h2 className="mt-6 font-display text-4xl md:text-7xl leading-[1.02] max-w-4xl mx-auto">
+            <h2 className="mt-6 font-display text-3xl md:text-7xl leading-[1.02] max-w-4xl mx-auto">
               Let's design a home that <em className="text-accent not-italic">feels like yours.</em>
             </h2>
             <p className="mt-8 max-w-xl mx-auto text-muted-foreground">

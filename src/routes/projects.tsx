@@ -66,8 +66,6 @@ function ProjectCard({
   onClick: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const yImg = useTransform(scrollYProgress, [0, 1], ["6%", "-6%"]);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   // Dynamically assign aspect ratio based on column span to accommodate landscape images properly
@@ -89,14 +87,15 @@ function ProjectCard({
       <div onClick={onClick} className="group block cursor-pointer">
         {/* Image with parallax */}
         <div className={`relative overflow-hidden ${aspectClass} bg-muted`}>
-          <motion.div style={{ y: yImg }} className="absolute inset-[-6%] h-[112%] w-full">
+          <div className="absolute inset-0 h-full w-full">
             <img
               src={project.image}
               alt={project.title}
               loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.2,1,0.3,1)] group-hover:scale-105"
             />
-          </motion.div>
+          </div>
 
           {/* Dark overlay on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-700" />
@@ -287,7 +286,7 @@ function Projects() {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-5xl md:text-8xl lg:text-[9rem] leading-[0.95] max-w-5xl"
+              className="font-display text-4xl md:text-8xl lg:text-[9rem] leading-[0.95] max-w-5xl"
             >
               Projects.
             </motion.h1>
@@ -390,7 +389,7 @@ function Projects() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="eyebrow">Begin</span>
-            <h2 className="mt-6 font-display text-4xl md:text-6xl leading-[1.05] max-w-3xl mx-auto">
+            <h2 className="mt-6 font-display text-3xl md:text-6xl leading-[1.05] max-w-3xl mx-auto">
               Have a space in mind?{" "}
               <em className="text-accent not-italic">Let's shape it together.</em>
             </h2>

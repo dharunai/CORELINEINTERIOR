@@ -9,6 +9,7 @@ const links = [
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact" },
+  { to: "/admin", label: "Admin" },
 ] as const;
 
 export function Navbar() {
@@ -89,7 +90,7 @@ export function Navbar() {
                   <Link
                     to={l.to}
                     onClick={() => setOpen(false)}
-                    className="font-display text-2xl tracking-tight"
+                    className="font-display text-xl md:text-2xl tracking-tight"
                   >
                     {l.label}
                   </Link>
