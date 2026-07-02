@@ -23,7 +23,7 @@ function Services() {
         <div className="container-luxe">
           <Reveal>
             <span className="eyebrow">Services</span>
-            <h1 className="mt-6 font-display text-5xl md:text-8xl leading-[1.02] max-w-5xl">
+            <h1 className="mt-6 font-display text-4xl md:text-8xl leading-[1.02] max-w-5xl">
               The full breadth of <em className="text-accent not-italic">interior design.</em>
             </h1>
           </Reveal>
@@ -65,7 +65,7 @@ function Services() {
       <section className="py-28 md:py-40 text-center">
         <div className="container-luxe">
           <Reveal>
-            <h2 className="font-display text-4xl md:text-6xl leading-[1.05] max-w-3xl mx-auto">
+            <h2 className="font-display text-3xl md:text-6xl leading-[1.05] max-w-3xl mx-auto">
               Have a space in mind? <em className="text-accent not-italic">Let's talk.</em>
             </h2>
             <Link to="/contact" className="mt-10 inline-flex items-center gap-3 bg-foreground px-8 py-4 text-xs tracking-[0.22em] uppercase text-background hover:bg-accent">
