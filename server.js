@@ -1,16 +1,66 @@
 import http from "node:http";
 import path from "node:path";
 import fs from "node:fs";
-import { fileURLToPath } from "node:url";
 
 const port = process.env.PORT || 3000;
 
-// Import the built server handler
-const serverModule = await import("./dist/server/server.js");
-const app = serverModule.default;
+// Write startup log
+const logFile = path.resolve("startup.log");
+function log(msg) {
+  const line = `[${new Date().toISOString()}] ${msg}\n`;
+  console.log(msg);
+  fs.appendFileSync(logFile, line);
+}
 
-// Serve static client assets
-const clientDir = path.resolve("dist/client");
+log(`Starting server... PORT=${port}`);
+log(`CWD: ${process.cwd()}`);
+log(`Node version: ${process.version}`);
+
+// Check if dist directory exists
+const distServerPath = path.resolve("dist/server/server.js");
+const distClientPath = path.resolve("dist/client");
+
+log(`Checking dist/server/server.js: ${fs.existsSync(distServerPath)}`);
+log(`Checking dist/client: ${fs.existsSync(distClientPath)}`);
+
+// List dist directory contents
+try {
+  if (fs.existsSync(path.resolve("dist"))) {
+    const distContents = fs.readdirSync(path.resolve("dist"));
+    log(`dist/ contents: ${JSON.stringify(distContents)}`);
+    if (fs.existsSync(path.resolve("dist/server"))) {
+      const serverContents = fs.readdirSync(path.resolve("dist/server"));
+      log(`dist/server/ contents: ${JSON.stringify(serverContents)}`);
+    }
+  } else {
+    log("ERROR: dist/ directory does NOT exist!");
+  }
+} catch (e) {
+  log(`Error listing dist: ${e.message}`);
+}
+
+let app;
+
+try {
+  const serverModule = await import(distServerPath);
+  app = serverModule.default;
+  log(`Server module loaded successfully. Keys: ${Object.keys(serverModule)}`);
+  log(`App has fetch: ${typeof app?.fetch}`);
+} catch (err) {
+  log(`FATAL: Failed to import dist/server/server.js: ${err.message}`);
+  log(`Stack: ${err.stack}`);
+  
+  // Start a basic error server so Hostinger doesn't 503
+  http.createServer((req, res) => {
+    res.writeHead(500, { "Content-Type": "text/html" });
+    res.end(`<h1>Server Error</h1><pre>${err.message}\n\n${err.stack}</pre>`);
+  }).listen(port, "0.0.0.0", () => {
+    log(`Error fallback server running on port ${port}`);
+  });
+  
+  // Don't proceed
+  throw err;
+}
 
 function getMimeType(ext) {
   const types = {
@@ -36,38 +86,36 @@ function getMimeType(ext) {
 
 const server = http.createServer(async (req, res) => {
   try {
-    // Try to serve static files from dist/client first
     const urlPath = new URL(req.url, `http://localhost:${port}`).pathname;
-    const staticFilePath = path.join(clientDir, urlPath);
 
-    // Only serve actual files (not directories), and only from /assets/ path
-    if (urlPath.startsWith("/assets/") && fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
-      const ext = path.extname(staticFilePath);
-      const mimeType = getMimeType(ext);
-      const content = fs.readFileSync(staticFilePath);
-      res.writeHead(200, {
-        "Content-Type": mimeType,
-        "Cache-Control": "public, max-age=31536000, immutable",
-      });
-      res.end(content);
-      return;
-    }
-
-    // Also serve files from /uploads/ directory (for admin-uploaded project images)
-    const publicDir = path.resolve("public");
-    if (urlPath.startsWith("/uploads/")) {
-      const uploadFilePath = path.join(publicDir, urlPath);
-      if (fs.existsSync(uploadFilePath) && fs.statSync(uploadFilePath).isFile()) {
-        const ext = path.extname(uploadFilePath);
-        const mimeType = getMimeType(ext);
-        const content = fs.readFileSync(uploadFilePath);
-        res.writeHead(200, { "Content-Type": mimeType });
+    // Serve static files from dist/client/assets/
+    if (urlPath.startsWith("/assets/")) {
+      const staticFilePath = path.join(distClientPath, urlPath);
+      if (fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
+        const ext = path.extname(staticFilePath);
+        const content = fs.readFileSync(staticFilePath);
+        res.writeHead(200, {
+          "Content-Type": getMimeType(ext),
+          "Cache-Control": "public, max-age=31536000, immutable",
+        });
         res.end(content);
         return;
       }
     }
 
-    // For everything else, use the TanStack Start SSR handler
+    // Serve uploaded images from public/uploads/
+    if (urlPath.startsWith("/uploads/")) {
+      const uploadFilePath = path.join(path.resolve("public"), urlPath);
+      if (fs.existsSync(uploadFilePath) && fs.statSync(uploadFilePath).isFile()) {
+        const ext = path.extname(uploadFilePath);
+        const content = fs.readFileSync(uploadFilePath);
+        res.writeHead(200, { "Content-Type": getMimeType(ext) });
+        res.end(content);
+        return;
+      }
+    }
+
+    // SSR: convert Node request to Web Request
     const headers = new Headers();
     for (const [key, value] of Object.entries(req.headers)) {
       if (value) {
@@ -101,7 +149,6 @@ const server = http.createServer(async (req, res) => {
 
     const response = await app.fetch(request);
 
-    // Write response status and headers
     const responseHeaders = {};
     response.headers.forEach((value, key) => {
       if (responseHeaders[key]) {
@@ -127,12 +174,12 @@ const server = http.createServer(async (req, res) => {
     }
     res.end();
   } catch (err) {
-    console.error("Request error:", err);
+    log(`Request error: ${err.message}`);
     res.writeHead(500, { "Content-Type": "text/plain" });
     res.end("Internal Server Error");
   }
 });
 
 server.listen(port, "0.0.0.0", () => {
-  console.log(`CoreLine Interior server running on http://0.0.0.0:${port}`);
+  log(`CoreLine Interior server running on http://0.0.0.0:${port}`);
 });

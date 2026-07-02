@@ -31,5 +31,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# Build temp files
+app.config.timestamp*.js
+startup.log
+
 # Local Netlify folder
 .netlify
