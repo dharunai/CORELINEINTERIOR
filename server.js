@@ -64,19 +64,23 @@ async function startServer() {
       try {
         const urlPath = new URL(req.url, `http://localhost:${port}`).pathname;
 
-        // Serve static files from dist/client/assets/
-        if (urlPath.startsWith("/assets/")) {
-          const staticFilePath = path.join(distClientPath, urlPath);
-          if (fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
-            const ext = path.extname(staticFilePath);
-            const content = fs.readFileSync(staticFilePath);
-            res.writeHead(200, {
-              "Content-Type": getMimeType(ext),
-              "Cache-Control": "public, max-age=31536000, immutable",
-            });
-            res.end(content);
-            return;
-          }
+        // Serve any static file from dist/client (like /assets/, /logo.png, /robots.txt)
+        const staticFilePath = path.join(distClientPath, urlPath);
+        if (fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
+          const ext = path.extname(staticFilePath);
+          const content = fs.readFileSync(staticFilePath);
+          
+          // Use aggressive caching for /assets/, and standard caching for root files like /logo.png
+          const cacheControl = urlPath.startsWith("/assets/")
+            ? "public, max-age=31536000, immutable"
+            : "public, max-age=3600";
+            
+          res.writeHead(200, {
+            "Content-Type": getMimeType(ext),
+            "Cache-Control": cacheControl,
+          });
+          res.end(content);
+          return;
         }
 
         // SSR request

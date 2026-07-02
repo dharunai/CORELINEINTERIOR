@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container-luxe py-20 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2 md:gap-3">
-            <img src="/src/assets/logo.png" alt="CoreLine Interior" className="h-12 md:h-14 w-auto" />
+            <img src="/logo.png" alt="CoreLine Interior" className="h-12 md:h-14 w-auto" />
             <div className="flex flex-col items-start -space-y-1">
               <span className="font-display text-lg md:text-xl tracking-tight text-background -ml-0.5">CoreLine</span>
               <span className="eyebrow text-[9px] md:text-[10px] tracking-[0.2em] text-background/70">Interior</span>
