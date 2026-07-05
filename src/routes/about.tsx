@@ -24,7 +24,7 @@ function About() {
         <div className="container-luxe">
           <Reveal>
             <span className="eyebrow">About the Studio</span>
-            <h1 className="mt-6 font-display text-4xl md:text-8xl leading-[1.02] max-w-5xl">
+            <h1 className="mt-6 font-display text-5xl md:text-8xl leading-[1.02] max-w-5xl">
               A quiet practice<br />
               <em className="text-accent not-italic">obsessed with craft.</em>
             </h1>
@@ -41,7 +41,7 @@ function About() {
           </Reveal>
           <div className="md:col-span-6 space-y-10 md:pt-12">
             <Reveal>
-              <h2 className="font-display text-2xl md:text-4xl leading-snug">
+              <h2 className="font-display text-3xl md:text-4xl leading-snug">
                 Founded in 2024, CoreLine designs homes, villas and workplaces that quietly elevate the way people live.
               </h2>
             </Reveal>
@@ -77,7 +77,7 @@ function About() {
           <div className="md:col-span-5 space-y-6">
             <Reveal>
               <span className="eyebrow">Leadership</span>
-              <h2 className="mt-4 font-display text-3xl md:text-5xl leading-[1.1]">
+              <h2 className="mt-4 font-display text-4xl md:text-5xl leading-[1.1]">
                 Meet Mr. Lalprasath
               </h2>
               <div className="text-accent text-xs tracking-[0.2em] uppercase mt-3">CEO & Founder</div>
@@ -100,7 +100,7 @@ function About() {
         <div className="container-luxe grid grid-cols-2 gap-x-6 gap-y-12 py-16 md:grid-cols-4 md:py-20">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
-              <div className="font-display text-4xl md:text-6xl">
+              <div className="font-display text-5xl md:text-6xl">
                 {s.n}<span className="text-accent">{s.suffix}</span>
               </div>
               <div className="mt-3 text-xs tracking-[0.2em] uppercase text-muted-foreground">{s.label}</div>
@@ -113,7 +113,7 @@ function About() {
         <div className="container-luxe">
           <Reveal>
             <span className="eyebrow">Our Process</span>
-            <h2 className="mt-5 font-display text-3xl md:text-6xl leading-[1.05] max-w-3xl">
+            <h2 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05] max-w-3xl">
               How we design, build and hand over a CoreLine home.
             </h2>
           </Reveal>

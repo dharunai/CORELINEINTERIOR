@@ -17,12 +17,12 @@ import sWardrobe from "@/assets/service-wardrobe.png";
 import sCeiling from "@/assets/service-ceiling.png";
 
 export const projects = [
-  { slug: "marble-light-residence", title: "Marble & Light Residence", type: "Luxury Villa", location: "ECR, Pollachi", image: villa, year: "2025" },
-  { slug: "linen-and-oak-apartment", title: "Linen & Oak Apartment", type: "Apartment Interiors", location: "Anna Nagar, Pollachi", image: bedroom, year: "2025" },
-  { slug: "the-brass-kitchen", title: "The Brass Kitchen", type: "Modular Kitchen", location: "Boat Club, Pollachi", image: kitchen, year: "2024" },
-  { slug: "founders-study", title: "Founder's Study", type: "Office Interiors", location: "Nungambakkam, Pollachi", image: office, year: "2024" },
-  { slug: "the-walnut-wardrobe", title: "The Walnut Wardrobe", type: "Custom Furniture", location: "Adyar, Pollachi", image: wardrobe, year: "2024" },
-  { slug: "plaster-and-pendant", title: "Plaster & Pendant", type: "Home Interiors", location: "Besant Nagar, Pollachi", image: dining, year: "2023" },
+  { slug: "marble-light-residence", title: "Marble & Light Residence", type: "Luxury Villa", location: "ECR, Chennai", image: villa, year: "2025" },
+  { slug: "linen-and-oak-apartment", title: "Linen & Oak Apartment", type: "Apartment Interiors", location: "Anna Nagar, Chennai", image: bedroom, year: "2025" },
+  { slug: "the-brass-kitchen", title: "The Brass Kitchen", type: "Modular Kitchen", location: "Boat Club, Chennai", image: kitchen, year: "2024" },
+  { slug: "founders-study", title: "Founder's Study", type: "Office Interiors", location: "Nungambakkam, Chennai", image: office, year: "2024" },
+  { slug: "the-walnut-wardrobe", title: "The Walnut Wardrobe", type: "Custom Furniture", location: "Adyar, Chennai", image: wardrobe, year: "2024" },
+  { slug: "plaster-and-pendant", title: "Plaster & Pendant", type: "Home Interiors", location: "Besant Nagar, Chennai", image: dining, year: "2023" },
 ];
 
 export const services = [

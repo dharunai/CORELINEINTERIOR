@@ -179,7 +179,7 @@ function FeaturedCard({ project, onClick }: { project: any; onClick: () => void 
                 ))}
               </div>
               <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-2">{project.type}</div>
-              <h3 className="font-display text-3xl md:text-6xl text-white leading-tight max-w-2xl">
+              <h3 className="font-display text-4xl md:text-6xl text-white leading-tight max-w-2xl">
                 {project.title}
               </h3>
               <p className="mt-4 max-w-lg text-white/65 text-sm leading-relaxed">{project.desc}</p>
@@ -286,7 +286,7 @@ function Projects() {
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 1.1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-3xl md:text-8xl lg:text-[9rem] leading-[0.95] max-w-5xl"
+              className="font-display text-4xl md:text-8xl lg:text-[9rem] leading-[0.95] max-w-5xl"
             >
               Projects.
             </motion.h1>
@@ -389,7 +389,7 @@ function Projects() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <span className="eyebrow">Begin</span>
-            <h2 className="mt-6 font-display text-2xl md:text-6xl leading-[1.05] max-w-3xl mx-auto">
+            <h2 className="mt-6 font-display text-3xl md:text-6xl leading-[1.05] max-w-3xl mx-auto">
               Have a space in mind?{" "}
               <em className="text-accent not-italic">Let's shape it together.</em>
             </h2>
@@ -452,7 +452,7 @@ function Projects() {
               <div className="flex-1 min-h-0 w-full md:w-1/3 p-6 md:p-12 overflow-y-auto bg-foreground/5 border-t md:border-t-0 md:border-l border-border/50">
                 <div className="flex flex-col justify-start md:justify-center min-h-full">
                   <div className="text-[10px] tracking-[0.3em] uppercase text-accent mb-4">{selectedProject.type}</div>
-                <h2 className="font-display text-2xl md:text-5xl leading-tight mb-6">{selectedProject.title}</h2>
+                <h2 className="font-display text-3xl md:text-5xl leading-tight mb-6">{selectedProject.title}</h2>
                 <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
                   <p>{selectedProject.desc}</p>
                 </div>

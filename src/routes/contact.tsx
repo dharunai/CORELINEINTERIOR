@@ -30,7 +30,7 @@ function Contact() {
         <div className="container-luxe">
           <Reveal>
             <span className="eyebrow">Contact</span>
-            <h1 className="mt-6 font-display text-4xl md:text-8xl leading-[1.02] max-w-5xl">
+            <h1 className="mt-6 font-display text-5xl md:text-8xl leading-[1.02] max-w-5xl">
               Let's begin a <em className="text-accent not-italic">conversation.</em>
             </h1>
           </Reveal>
@@ -77,7 +77,7 @@ function Contact() {
             {sent ? (
               <div className="border border-border p-10 md:p-14 text-center">
                 <div className="eyebrow">Thank You</div>
-                <h2 className="mt-4 font-display text-3xl md:text-4xl">Your message is on its way.</h2>
+                <h2 className="mt-4 font-display text-4xl">Your message is on its way.</h2>
                 <p className="mt-4 text-muted-foreground">We'll be in touch within two working days.</p>
               </div>
             ) : (

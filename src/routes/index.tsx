@@ -152,7 +152,7 @@ function Home() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-16 mb-16 md:mb-24">
             <Reveal className="md:col-span-5">
               <span className="eyebrow">What We Do</span>
-              <h2 className="mt-5 font-display text-3xl md:text-6xl leading-[1.05]">
+              <h2 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05]">
                 Considered design,<br /><em className="text-accent not-italic">end to end.</em>
               </h2>
             </Reveal>
@@ -196,7 +196,7 @@ function Home() {
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between mb-16 md:mb-20">
             <Reveal>
               <span className="eyebrow">Selected Work</span>
-              <h2 className="mt-5 font-display text-3xl md:text-6xl leading-[1.05]">Recent projects</h2>
+              <h2 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05]">Recent projects</h2>
             </Reveal>
             <Reveal delay={0.15}>
               <Link to="/projects" className="link-underline inline-flex items-center gap-2 text-sm tracking-wide">
@@ -264,7 +264,7 @@ function Home() {
           <div className="md:col-span-6">
             <Reveal>
               <span className="eyebrow">The Studio</span>
-              <h2 className="mt-5 font-display text-xl md:text-5xl leading-[1.08]">
+              <h2 className="mt-5 font-display text-2xl md:text-5xl leading-[1.08]">
                 A practice built on <em className="text-accent not-italic">restraint, craft</em> and an obsession with detail.
               </h2>
             </Reveal>
@@ -289,7 +289,7 @@ function Home() {
         <div className="container-luxe">
           <Reveal>
             <span className="eyebrow">Our Process</span>
-            <h2 className="mt-5 font-display text-3xl md:text-6xl leading-[1.05] max-w-3xl">
+            <h2 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05] max-w-3xl">
               Six steps, from <em className="text-accent not-italic">first conversation</em> to keys in hand.
             </h2>
           </Reveal>
@@ -313,7 +313,7 @@ function Home() {
         <div className="container-luxe">
           <Reveal>
             <span className="eyebrow">Kind Words</span>
-            <h2 className="mt-5 font-display text-3xl md:text-6xl leading-[1.05] max-w-3xl">
+            <h2 className="mt-5 font-display text-4xl md:text-6xl leading-[1.05] max-w-3xl">
               From the people who live in our work.
             </h2>
           </Reveal>
@@ -342,7 +342,7 @@ function Home() {
         <div className="container-luxe text-center">
           <Reveal>
             <span className="eyebrow">Begin</span>
-            <h2 className="mt-6 font-display text-2xl md:text-7xl leading-[1.02] max-w-4xl mx-auto">
+            <h2 className="mt-6 font-display text-3xl md:text-7xl leading-[1.02] max-w-4xl mx-auto">
               Let's design a home that <em className="text-accent not-italic">feels like yours.</em>
             </h2>
             <p className="mt-8 max-w-xl mx-auto text-muted-foreground">
