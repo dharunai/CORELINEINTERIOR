@@ -30,9 +30,9 @@ export function Footer() {
               <Mail className="h-4 w-4 text-accent" />
               <span>corelineinterior@gmail.com</span>
             </a>
-            <span className="inline-flex items-center gap-3">
-              <MapPin className="h-4 w-4 text-accent" />
-              <span>Pollachi</span>
+            <span className="inline-flex items-start gap-3">
+              <MapPin className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+              <span>Pollachi | Palakkad | Coimbatore</span>
             </span>
           </div>
         </div>

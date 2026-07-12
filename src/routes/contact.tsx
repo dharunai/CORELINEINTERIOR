@@ -55,8 +55,8 @@ function Contact() {
               <a href="mailto:corelineinterior@gmail.com" className="flex items-center gap-4 link-underline">
                 <Mail className="h-4 w-4 text-accent" /> corelineinterior@gmail.com
               </a>
-              <div className="flex items-center gap-4">
-                <MapPin className="h-4 w-4 text-accent" /> Pollachi
+              <div className="flex items-start gap-4">
+                <MapPin className="h-4 w-4 text-accent mt-0.5 shrink-0" /> Pollachi | Palakkad | Coimbatore
               </div>
               <a href="https://wa.me/916383620372" target="_blank" rel="noreferrer" className="flex items-center gap-4 link-underline">
                 <MessageCircle className="h-4 w-4 text-accent" /> WhatsApp +91 63836 20372
