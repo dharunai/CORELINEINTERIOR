@@ -458,6 +458,11 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                       <option value="Commercial Spaces">Commercial Spaces</option>
                       <option value="Custom Furniture">Custom Furniture</option>
                       <option value="Bedroom Interiors">Bedroom Interiors</option>
+                      <option value="Living Room Interior">Living Room Interior</option>
+                      <option value="Vanity Interior">Vanity Interior</option>
+                      <option value="Dining Space">Dining Space</option>
+                      <option value="Foyer Interior">Foyer Interior</option>
+                      <option value="Others">Others</option>
                     </select>
                   </div>
 

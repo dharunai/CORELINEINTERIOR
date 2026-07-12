@@ -300,7 +300,7 @@ function Projects() {
             className="mt-10 flex flex-wrap gap-x-12 gap-y-4 border-t border-border/40 pt-8 text-sm"
           >
             {[
-              { n: 30, suffix: "+", label: "Completed" },
+              { n: Math.max(30, allProjects.length), suffix: "+", label: "Completed" },
               { n: 2, suffix: "yrs", label: "Practice" },
               { n: 25, suffix: "+", label: "Happy Clients" },
             ].map((s) => (
